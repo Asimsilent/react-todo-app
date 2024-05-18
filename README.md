@@ -13,6 +13,16 @@
 3) git push
 
 
+<!-- Git Branches CLI -->
+1) git checkout -b "brnach-name" --> create new branch branch name could be anything
+
+
+
+<!-- REACT CONCEPTS -->
+1) Real dom vs VIrutal Dom
+2) React Hooks ---> Use State, Use Effect, Use Ref
+3) events in react --> onClick, onChange
+4) Async Handling or api calling in React
 
 
 
