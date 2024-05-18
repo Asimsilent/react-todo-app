@@ -12,6 +12,8 @@
 2) git commit -m "project-steup" ---> in string message can be anything
 3) git push
 
+<!-- Git TO Take Pull From a Branch -->
+1) git pull origin main ---> instead of main branch name can be anything
 
 <!-- Git Branches CLI -->
 1) git checkout -b "brnach-name" --> create new branch branch name could be anything
