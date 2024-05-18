@@ -1,11 +1,16 @@
 <!-- Design Libraries -->
-
 1) Tailwind
 2) Bootstrap
 3) MUI
 4) Chakra 
 
 
+
+<!-- GIT  -->
+# LOCALLY THE REPO IS SAVED FOR FIRST TWO COMMANDS
+1) git add . ---> add all files to git
+2) git commit -m "project-steup" ---> in string message can be anything
+3) git push
 
 
 
