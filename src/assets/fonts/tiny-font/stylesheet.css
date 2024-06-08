@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Tiny5';
+    src: url('Tiny5-Regular.eot');
+    src: url('Tiny5-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Tiny5-Regular.woff2') format('woff2'),
+        url('Tiny5-Regular.woff') format('woff'),
+        url('Tiny5-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
