@@ -1,111 +1,55 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Card, CardGroup, Col, Container, Row } from "react-bootstrap";
+import axios from "axios";
 
 function App() {
-  const [count, setCount] = useState("");
-  const [list, setList] = useState([]);
-  const [edit, setEdit] = useState(false);
-  const [index, setIndex] = useState(null);
-  function handleChange(e) {
-    setCount(e.target.value);
-  }
-  const a = "";
-  function handleClick() {
-    setCount("");
-    setList((prev) => [...prev, count]);
-  }
-  function handleDelete(index) {
-    const newAry = list.filter((el, i) => i != index);
-    setList(newAry);
-  }
-  function handleEdit(item, i) {
-    setCount(item);
-    setEdit(true);
-    setIndex(i);
-  }
-  function handleUpdate() {
-    let array = [...list]
-    array.splice(index, 1, count);
-    console.log(array);
-    setList(array);
-    handleCancel();
-  }
-  function handleCancel() {
-    setEdit(false);
-    setCount("");
-  }
+  const [products, setProducts] = useState([]);
+
+  const getProducts = async () => {
+    try {
+      const response = await axios.get("https://dummyjson.com/products");
+      console.log(response);
+      setProducts(response?.data?.products);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
-    <>
-      <Form.Label>List Items</Form.Label>
-      <div className=" d-flex align-items-center ">
-        <Form.Control
-          className=" me-2"
-          type="text"
-          name="todo-title"
-          id="todo-title"
-          onChange={handleChange}
-          value={count}
-        />
-        {edit ? (
-          <>
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={handleUpdate}
-              disabled={count == ""}
-            >
-              update
-            </Button>
-            <Button variant="primary" size="lg" onClick={handleCancel}>
-              cancel
-            </Button>
-          </>
-        ) : (
-          <Button
-            variant="primary"
-            size="lg"
-            onClick={handleClick}
-            disabled={count == ""}
-          >
-            Add
-          </Button>
-        )}
-      </div>
-      <div>
-        <ul>
-          {list.length > 0 ? (
-            list.map((title, i) => {
-              return (
-                <li key={i}>
-                  <div className=" d-flex align-items-center justify-content-between">
-                    <span>{title}</span>
-                    <div className=" d-flex align-items-center justify-content-end">
-                      <button
-                        onClick={() => {
-                          handleEdit(title, i);
-                        }}
-                      >
-                        edit
-                      </button>
-                      <button
-                        onClick={() => {
-                          handleDelete(i);
-                        }}
-                      >
-                        delete
-                      </button>
-                    </div>
-                  </div>
-                </li>
-              );
-            })
-          ) : (
-            <Alert variant="danger">No Record Found</Alert>
-          )}
-        </ul>
-      </div>
-    </>
+    <Container>
+      <Row className="row-gap-3">
+        {products?.map((el, index) => {
+          return (
+            <Col xs={12} md={6} lg={4}>
+              <Card key={index}>
+                <Card.Img
+                  variant="top"
+                  src={el?.thumbnail}
+                  height={300}
+                  width={160}
+                />
+                <Card.Body>
+                  <Card.Title>Card title</Card.Title>
+                  <Card.Text>
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
+              </Card>
+            </Col>
+          );
+        })}
+      </Row>
+    </Container>
   );
 }
 
